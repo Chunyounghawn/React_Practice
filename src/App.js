@@ -2,34 +2,20 @@ import Button from "./Button"
 import styles from "./App.module.css"
 import { useState, useEffect } from "react"
 
-function App() {
-  const [counter, setValue] = useState(0)
-  const [keyword, setKeyword] = useState("")
-  const onClick = () => setValue((counter) => counter + 1)
-  const onChange = (event) => setKeyword(event.target.value)
-
-  console.log("run all time")
-
+function Hello() {
   useEffect(() => {
-    console.log("call the api")
+    console.log("i'm here")
   }, [])
+  return <h1>hihi</h1>
+}
 
-  useEffect(() => {
-    if (keyword !== "" && keyword.length > 5) {
-      console.log("search for", keyword)
-    }
-  }, [keyword])
-
+function App() {
+  const [showing, setShowing] = useState(false)
+  const onClick = () => setShowing((showing) => !showing)
   return (
     <div>
-      <input
-        value={keyword}
-        onChange={onChange}
-        type="text"
-        placeholder="Serach here..."
-      ></input>
-      <h1>{counter}</h1>
-      <button onClick={onClick}>click me</button>
+      {showing ? <Hello /> : null}
+      <button onClick={onClick}>{showing ? "Hide" : "Show"}</button>
     </div>
   )
 }
