@@ -20,7 +20,7 @@ function App() {
 
   return (
     <div>
-      <h1>The Coins! {coins.length}</h1>
+      <h1>The Coins : {coins.length}</h1>
       <input
         onChange={onChange}
         value={myMoney}
