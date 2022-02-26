@@ -1,5 +1,7 @@
 import { useState, useEffect } from "react"
 
+//11:00 start
+
 function App() {
   const [loading, setLoading] = useState(true)
   const [movies, setMovies] = useState()
@@ -19,7 +21,19 @@ function App() {
   }, [])
 
   console.log(movies)
-  return <div>{loading ? <h1>Loading</h1> : null}</div>
+  return (
+    <div>
+      {loading ? (
+        <h1>Loading</h1>
+      ) : (
+        <div>
+          {movies.map((movie) => (
+            <div key={movie.id}>{movie.title}</div>
+          ))}
+        </div>
+      )}
+    </div>
+  )
 }
 
 export default App
