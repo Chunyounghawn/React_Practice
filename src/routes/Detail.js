@@ -1,6 +1,5 @@
 import { useParams } from "react-router-dom"
 import { useState, useEffect } from "react"
-import * as mmovie from "../components/Movie"
 
 function Detail() {
   const { id } = useParams()
@@ -20,14 +19,14 @@ function Detail() {
     getMovie()
   }, [])
 
-  console.log(movie)
   return (
     <div>
       {loading ? (
         <h1>Loading</h1>
       ) : (
         <div>
-          <mmovie.Movie2 key={movie.status} />
+          데이터 가져오기 성공 / 링크:
+          <a href={movie.data.movie.url}>상세정보 바로가기</a>
         </div>
       )}
     </div>

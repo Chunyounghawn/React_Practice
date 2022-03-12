@@ -18,15 +18,6 @@ function Movie({ id, coverImg, title, summary, genres }) {
   )
 }
 
-export function Movie2({ key }) {
-  console.log(key)
-  return (
-    <div>
-      <h2>{key}</h2>
-    </div>
-  )
-}
-
 Movie.propTypes = {
   id: PropTypes.number.isRequired,
   coverImg: PropTypes.string.isRequired,
