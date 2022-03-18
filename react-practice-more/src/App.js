@@ -19,19 +19,22 @@ const rotationAnimation = keyframes`
 
 `
 
+const Emoji = styled.span`
+  font-size: 10px;
+`
+
 const Box = styled.div`
   height: 200px;
   width: 200px;
   position: relative;
   top: 28px;
   left: 120px;
-  background-color: tomato;
+  background-color: ${(props) => props.bgcolor};
   display: flex;
   justify-content: center;
   align-items: center;
   animation: ${rotationAnimation} 1s linear infinite;
-  span {
-    font-size: 30px;
+  ${Emoji} {
     &:hover {
       //& = span
       font-size: 80px;
@@ -45,8 +48,8 @@ const Box = styled.div`
 function App() {
   return (
     <Wrapper>
-      <Box>
-        <span>😊</span>
+      <Box bgcolor="blue">
+        <Emoji as="p">😊</Emoji>
       </Box>
     </Wrapper>
   )
