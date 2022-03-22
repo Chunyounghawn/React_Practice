@@ -57,9 +57,11 @@ table {
   box-sizing: border-box;
 }
 body{
+  font-weight: 300;
   font-family: 'League Gothic', sans-serif;
   background-color: ${(props) => props.theme.bgColor};
   color: ${(props) => props.theme.textColor};
+  line-height: 1.2;
 }
 a{ //a가 html에 <a herf 랑 같은거임
   text-decoration: none;
