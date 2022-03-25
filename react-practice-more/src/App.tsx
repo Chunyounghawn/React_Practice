@@ -1,5 +1,6 @@
 import { createGlobalStyle } from "styled-components"
 import Router from "./Router"
+import { ReactQueryDevtools } from "react-query/devtools"
 
 const GolbalStyle = createGlobalStyle`
 //https://fonts.google.com
@@ -74,6 +75,7 @@ function App() {
     <>
       <GolbalStyle />
       <Router />
+      <ReactQueryDevtools initialIsOpen={true} />
     </>
   )
 }
