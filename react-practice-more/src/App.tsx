@@ -1,6 +1,7 @@
 import { createGlobalStyle } from "styled-components"
 import Router from "./Router"
 import { ReactQueryDevtools } from "react-query/devtools"
+import { HelmetProvider } from "react-helmet-async"
 
 const GolbalStyle = createGlobalStyle`
 //https://fonts.google.com
@@ -73,9 +74,14 @@ a{ //a가 html에 <a herf 랑 같은거임
 function App() {
   return (
     <>
-      <GolbalStyle />
-      <Router />
-      <ReactQueryDevtools initialIsOpen={true} />
+      <HelmetProvider>
+        <GolbalStyle />
+
+        <Router />
+
+        <ReactQueryDevtools initialIsOpen={true} />
+      </HelmetProvider>
+
     </>
   )
 }
