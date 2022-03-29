@@ -1,9 +1,11 @@
-import { createGlobalStyle } from "styled-components"
+import { createGlobalStyle, ThemeProvider } from "styled-components"
 import Router from "./Router"
 import { ReactQueryDevtools } from "react-query/devtools"
 import { HelmetProvider } from "react-helmet-async"
+import { useState } from "react"
+import { darkTheme, lightTheme } from "./theme";
 
-const GolbalStyle = createGlobalStyle`
+const GlobalStyle = createGlobalStyle`
 //https://fonts.google.com
 @import url('https://fonts.googleapis.com/css2?family=League+Gothic&display=swap');
 
@@ -72,14 +74,16 @@ a{ //a가 html에 <a herf 랑 같은거임
 `
 
 function App() {
+  const [isDark, setIsDark] = useState(false)
+  const toggleDark = () => setIsDark((current) => !current);
   return (
     <>
       <HelmetProvider>
-        <GolbalStyle />
-
-        <Router />
-
-        <ReactQueryDevtools initialIsOpen={true} />
+        <ThemeProvider theme={isDark ? darkTheme : lightTheme}>
+          <GlobalStyle />
+          <Router isDark={isDark} toggleDark={toggleDark} />
+          <ReactQueryDevtools initialIsOpen={true} />
+        </ThemeProvider>
       </HelmetProvider>
 
     </>

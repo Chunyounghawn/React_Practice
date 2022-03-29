@@ -22,7 +22,7 @@ const CoinsList = styled.ul``
 
 const Coin = styled.li`
   background-color: white;
-  color: ${(props) => props.theme.bgColor};
+  color: ${(props) => props.theme.textColor};
   border-radius: 15px;
   margin-bottom: 10px;
   a {
@@ -64,7 +64,11 @@ interface ICoin {
   type: string
 }
 
-function Coins() {
+interface IcoinsProps {
+  toggleDark: () => void
+}
+
+function Coins({ toggleDark }: IcoinsProps) {
   const { isLoading, data } = useQuery<ICoin[]>("allCoins", fetchCoins)
 
   //리액트쿼리가 캐시를 저장하기때문에 뒤로가기해도 로딩이 다시안뜸
@@ -87,6 +91,7 @@ function Coins() {
       </Helmet>
       <Header>
         <Title>코인</Title>
+        <button onClick={toggleDark}>Toggle Dark Mode</button>
       </Header>
       {isLoading ? (
         <Loader>Loading...</Loader>
