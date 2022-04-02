@@ -5,10 +5,18 @@ export const darktheme = () => ({ type: DARKTHEME })
 export const lighttheme = () => ({ type: LIGHTTHEME })
 
 type ThemeState = {
-  theme: string
+  Rstate: {
+    bgColor: string
+    textColor: string
+    accentColor: string
+  }
 }
 const initialState: ThemeState = {
-  theme: "darkTheme",
+  Rstate: {
+    bgColor: "#2f3640",
+    textColor: "black",
+    accentColor: "#9c88ff",
+  },
 }
 
 type ThemeSelectorAction =
@@ -21,9 +29,21 @@ function ThemeSelector(
 ): ThemeState {
   switch (action.type) {
     case DARKTHEME:
-      return { theme: "darkTheme" }
+      return {
+        Rstate: {
+          bgColor: "#2f3640",
+          textColor: "black",
+          accentColor: "#9c88ff",
+        },
+      }
     case LIGHTTHEME:
-      return { theme: "lightTheme" }
+      return {
+        Rstate: {
+          bgColor: "whitesmoke",
+          textColor: "black",
+          accentColor: "#9c88ff",
+        },
+      }
     default:
       return state
   }

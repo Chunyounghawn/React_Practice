@@ -1,13 +1,21 @@
 import React from 'react';
 
 type ThemeProps = {
-  theme: string;
+  Rstate: {
+    bgColor: string
+    textColor: string
+    accentColor: string
+  }
   ChangeToDarkTheme: () => void;
   ChangeToLightTheme: () => void;
 }
 
 function ThemeSelector({
-  theme,
+  Rstate: {
+    bgColor,
+    textColor,
+    accentColor,
+  },
   ChangeToDarkTheme,
   ChangeToLightTheme
 }: ThemeProps) {

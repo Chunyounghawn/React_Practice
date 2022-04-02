@@ -2,11 +2,7 @@ import { createGlobalStyle, ThemeProvider } from "styled-components"
 import Router from "./Router"
 import { ReactQueryDevtools } from "react-query/devtools"
 import { HelmetProvider } from "react-helmet-async"
-import { createStore } from "redux"
-import rootReducer from "./modules"
-import { RootStateOrAny, Provider } from "react-redux"
-import { darkTheme, lightTheme } from "./theme"
-
+import { RootStateOrAny } from "react-redux"
 import { useSelector } from 'react-redux'
 
 
@@ -80,13 +76,19 @@ a{ //a가 html에 <a herf 랑 같은거임
 `
 function App() {
 
-  const ThemeName = useSelector((state: RootStateOrAny) => state.ThemeSelector.theme)
-  //아직 좀 엉성함! 이름만 가져와서 비교해서 바꾸는것도 그렇고, 이름비교할때도 여러테마로 할수있게 비교해야함!
-  //redux안에 테마정보 넣으면 될듯하다!
+  //아직 좀 엉성함! 이름만 가져와서 비교해서 바꾸는것도 그렇고, 이름비교할때도 여러테마로 할수있게 비교해야함! =>해결
+  //redux안에 테마정보 넣으면 될듯하다!>해결
+  //새로운문제, 파일이름이 내가 알아보기 어려움...
+
+  const ThemeInfo = useSelector((state: RootStateOrAny) => state.ThemeSelector.Rstate);
+  console.log(ThemeInfo);
+
+  //console.log(useSelector(state => state));
+
   return (
     <>
       <HelmetProvider>
-        <ThemeProvider theme={ThemeName == "darkTheme" ? darkTheme : lightTheme}>
+        <ThemeProvider theme={ThemeInfo}>
           <GlobalStyle />
           <Router />
           <ReactQueryDevtools initialIsOpen={true} />

@@ -5,7 +5,7 @@ import { darktheme, lighttheme } from '../modules/ThemeSelector';
 import ThemeSelector from '../components/ThemeSelector';
 
 function ThemeSelectorContainer() {
-  const theme = useSelector((state: RootState) => state.ThemeSelector.theme)
+  const theme = useSelector((state: RootState) => state)
   const dispatch = useDispatch();
 
   const ChangeToDarkTheme = () => {
@@ -18,7 +18,7 @@ function ThemeSelectorContainer() {
 
   return (
     <ThemeSelector
-      theme={theme}
+      Rstate={theme.ThemeSelector.Rstate}
       ChangeToDarkTheme={ChangeToDarkTheme}
       ChangeToLightTheme={ChangeToLightTheme}
     />
