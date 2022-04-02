@@ -1,5 +1,5 @@
-import { useEffect, useState } from "react"
-import { Routes, Route, useLocation, useParams, useMatch } from "react-router"
+
+import { useLocation, useParams, useMatch } from "react-router"
 import styled from "styled-components"
 import { Link, Outlet } from "react-router-dom"
 import { useQuery } from "react-query"
@@ -134,9 +134,6 @@ interface priceData {
   }
 }
 
-interface ICoinProps {
-  isDark: boolean
-}
 
 function Coin() {
   const { coinId } = useParams<string>()

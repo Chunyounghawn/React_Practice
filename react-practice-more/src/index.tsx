@@ -1,21 +1,25 @@
 import React from "react"
 import ReactDOM from "react-dom"
 import { QueryClient, QueryClientProvider } from "react-query"
-import { ThemeProvider } from "styled-components"
 import App from "./App"
 
 import { Provider } from "react-redux";
-import store from "./redux/store";
+import { createStore } from "redux"
+import rootReducer from './modules'
 
 const queryClient = new QueryClient()
 
+const store = createStore(rootReducer)
+
 ReactDOM.render(
   <React.StrictMode>
-    <QueryClientProvider client={queryClient}>
-      <Provider store={store}>
+    <Provider store={store}>
+      <QueryClientProvider client={queryClient}>
+
         <App />
-      </Provider>
-    </QueryClientProvider>
+
+      </QueryClientProvider>
+    </Provider>
   </React.StrictMode>,
   document.getElementById("root")
 )

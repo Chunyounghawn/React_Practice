@@ -1,9 +1,10 @@
-import { useEffect, useState } from "react"
+
 import { Helmet } from "react-helmet-async"
 import { useQuery } from "react-query"
 import { Link } from "react-router-dom"
 import styled from "styled-components"
 import { fetchCoins } from "./api"
+import ThemeSelectorContainer from "../components/ThemeSelectorContainer"
 
 const Container = styled.div`
   padding: 0px 20px;
@@ -64,13 +65,10 @@ interface ICoin {
   type: string
 }
 
-interface IcoinsProps {
-  toggleDark: () => void
-}
 
-function Coins({ toggleDark }: IcoinsProps) {
+
+function Coins() {
   const { isLoading, data } = useQuery<ICoin[]>("allCoins", fetchCoins)
-
   //리액트쿼리가 캐시를 저장하기때문에 뒤로가기해도 로딩이 다시안뜸
 
   // const [coins, setCoins] = useState<CoinInterface[]>([])
@@ -91,7 +89,8 @@ function Coins({ toggleDark }: IcoinsProps) {
       </Helmet>
       <Header>
         <Title>코인</Title>
-        <button onClick={toggleDark}>Toggle Dark Mode</button>
+        <ThemeSelectorContainer />
+        {/* <button onClick={toggleDark}>Toggle Dark Mode</button> */}
       </Header>
       {isLoading ? (
         <Loader>Loading...</Loader>

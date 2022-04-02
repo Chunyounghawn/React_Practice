@@ -2,8 +2,14 @@ import { createGlobalStyle, ThemeProvider } from "styled-components"
 import Router from "./Router"
 import { ReactQueryDevtools } from "react-query/devtools"
 import { HelmetProvider } from "react-helmet-async"
-import { useState } from "react"
-import { darkTheme, lightTheme } from "./theme";
+import { createStore } from "redux"
+import rootReducer from "./modules"
+import { RootStateOrAny, Provider } from "react-redux"
+import { darkTheme, lightTheme } from "./theme"
+
+import { useSelector } from 'react-redux'
+
+
 
 const GlobalStyle = createGlobalStyle`
 //https://fonts.google.com
@@ -72,18 +78,19 @@ a{ //a가 html에 <a herf 랑 같은거임
   color:inherit;
 }
 `
-
 function App() {
-  const [isDark, setIsDark] = useState(false)
-  const toggleDark = () => setIsDark((current) => !current);
+
+  const ThemeName = useSelector((state: RootStateOrAny) => state.ThemeSelector.theme)
+
   return (
     <>
       <HelmetProvider>
-        <ThemeProvider theme={isDark ? darkTheme : lightTheme}>
+        <ThemeProvider theme={ThemeName == "darkTheme" ? darkTheme : lightTheme}>
           <GlobalStyle />
-          <Router isDark={isDark} toggleDark={toggleDark} />
+          <Router />
           <ReactQueryDevtools initialIsOpen={true} />
         </ThemeProvider>
+
       </HelmetProvider>
 
     </>
