@@ -81,7 +81,8 @@ a{ //a가 html에 <a herf 랑 같은거임
 function App() {
 
   const ThemeName = useSelector((state: RootStateOrAny) => state.ThemeSelector.theme)
-
+  //아직 좀 엉성함! 이름만 가져와서 비교해서 바꾸는것도 그렇고, 이름비교할때도 여러테마로 할수있게 비교해야함!
+  //redux안에 테마정보 넣으면 될듯하다!
   return (
     <>
       <HelmetProvider>
