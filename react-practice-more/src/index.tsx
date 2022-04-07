@@ -11,6 +11,7 @@ const queryClient = new QueryClient()
 
 const store = createStore(rootReducer)
 
+
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>

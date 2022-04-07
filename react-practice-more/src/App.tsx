@@ -2,8 +2,8 @@ import { createGlobalStyle, ThemeProvider } from "styled-components"
 import Router from "./Router"
 import { ReactQueryDevtools } from "react-query/devtools"
 import { HelmetProvider } from "react-helmet-async"
-import { RootStateOrAny } from "react-redux"
 import { useSelector } from 'react-redux'
+import { RootState } from "./modules"
 
 
 
@@ -78,10 +78,26 @@ function App() {
 
   //아직 좀 엉성함! 이름만 가져와서 비교해서 바꾸는것도 그렇고, 이름비교할때도 여러테마로 할수있게 비교해야함! =>해결
   //redux안에 테마정보 넣으면 될듯하다!>해결
-  //새로운문제, 파일이름이 내가 알아보기 어려움...
+  //현재 이해한 바로는, Coins에서 ThemeSelectorContainer를 불러와 ThemeSelectorContainer에서 Themeselector를 불러와 버튼을 가져와 생성한다
+  //원래 dispatch는 action을 인자로 던지지만 ThemeSelectorContainer를 통해 함수를 던지게 함.(ThemeSelectorContainer의 용도)
+  //+useDispatch가 dispatch를 함수 컴포넌트에서 사용할수있게 해줌
+  //함수형 컴포넌트에서는 useSelector() 훅을 사용해서 store에 접근하여 변수를 가져올 수 있고 useDispatch() 훅을 통하여 직접 action creator들을 dispatch 시킬 수 있다.
+  //+다른사용법 : const countPlusTwo = useSelector(state => state.counter.value + 2) (불확실)
+  //https://byul91oh.tistory.com/438
 
-  const ThemeInfo = useSelector((state: RootStateOrAny) => state.ThemeSelector.Rstate);
-  console.log(ThemeInfo);
+  //src/index에서 스토어를 지정해줬고(하위컴포넌트들 사용가능) 이때문에 useSelector로 스토어의 데이터 조회가능, 아래 ThemeInfo로 씀
+
+  //보통 Themeselector는 대부분 state를 가지고 있지않으며 가지고있을경우 UI에 관련된 것이여야함
+  //그래서 UI에 관련된 색깔정보를 가져온것.
+  //자세한내용:https://velopert.com/3346   /   내 깃블로그에도 포스팅함.
+
+
+
+
+
+  //Themeselector에는 
+
+  const ThemeInfo = useSelector((state: RootState) => state.ThemeSelector.Rstate);
 
   //console.log(useSelector(state => state));
 
