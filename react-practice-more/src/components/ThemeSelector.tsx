@@ -1,5 +1,6 @@
 import React from 'react';
 
+//Props의 타입을 정해주고 컴포넌트에서 props를 받아올때 타입을 지정해준다. 
 type ThemeProps = {
   Rstate: {
     bgColor: string

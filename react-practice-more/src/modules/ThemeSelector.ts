@@ -1,6 +1,8 @@
+//action
 const DARKTHEME = "ThemeSelector/DARKTHEME" as const
 const LIGHTTHEME = "ThemeSelector/LIGHTTHEME" as const
 
+//action creator(action Types)
 export const darktheme = () => ({ type: DARKTHEME })
 export const lighttheme = () => ({ type: LIGHTTHEME })
 
@@ -23,6 +25,7 @@ type ThemeSelectorAction =
   | ReturnType<typeof darktheme>
   | ReturnType<typeof lighttheme>
 
+//reducer
 function ThemeSelector(
   state: ThemeState = initialState,
   action: ThemeSelectorAction
