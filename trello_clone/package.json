@@ -1,5 +1,5 @@
 {
-  "name": "react-practice-more",
+  "name": "trello_clone",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -15,17 +15,17 @@
     "query": "^0.2.0",
     "react": "^17.0.2",
     "react-apexcharts": "^1.4.0",
+    "react-beautiful-dnd": "^13.1.0",
     "react-dom": "^17.0.2",
     "react-helmet": "^6.1.0",
     "react-helmet-async": "^1.2.3",
-    "react-hook-form": "^7.29.0",
     "react-query": "^3.34.16",
     "react-redux": "^7.2.6",
     "react-router-dom": "^6.2.2",
-    "react-scripts": "^5.0.0",
+    "react-scripts": "4.0.3",
     "redux": "^4.1.2",
     "redux-thunk": "^2.4.1",
-    "styled-components": "^5.3.1",
+    "styled-components": "^5.3.5",
     "typescript": "^4.4.4",
     "web-vitals": "^1.1.2"
   },
@@ -54,6 +54,7 @@
     ]
   },
   "devDependencies": {
+    "@types/react-beautiful-dnd": "^13.1.2",
     "@types/react-helmet": "^6.1.5",
     "@types/styled-components": "^5.1.15"
   }
