@@ -1,8 +1,31 @@
-import { createGlobalStyle, ThemeProvider } from "styled-components"
+import styled, { createGlobalStyle, ThemeProvider } from "styled-components"
 import { useSelector } from "react-redux"
 import { RootState } from "./modules"
 
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd"
+import { darkTheme } from "./theme"
+
+const Wrapper = styled.div`
+  display: flex;
+  max-width: 480px;
+  width: 100%;
+  margin: 0 auto;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+`
+const Boards = styled.div`
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+`
+
+const Board = styled.div`
+  background-color: ${(props) => props.theme.boardColor};
+`
+
+const Card = styled.div`
+  background-color: ${(props) => props.theme.cardColor};
+`
 
 const GlobalStyle = createGlobalStyle`
 //https://fonts.google.com
@@ -63,7 +86,7 @@ body{
   font-weight: 300;
   font-family: 'League Gothic', sans-serif;
   background-color: ${(props) => props.theme.bgColor};
-  color: ${(props) => props.theme.textColor};
+  color: black;
   line-height: 1.2;
   font-size:50px;
   letter-spacing:5px;
@@ -75,38 +98,39 @@ a{ //a가 html에 <a herf 랑 같은거임
 `
 
 function App() {
-  const ThemeInfo = useSelector(
-    (state: RootState) => state.ThemeSelector.Rstate
-  )
   const onDragEnd = () => {}
 
   return (
-    <ThemeProvider theme={ThemeInfo}>
+    <ThemeProvider theme={darkTheme}>
       <GlobalStyle />
 
       <DragDropContext onDragEnd={onDragEnd}>
-        <div>
-          <Droppable droppableId="one">
-            {(magic) => (
-              <ul ref={magic.innerRef} {...magic.droppableProps}>
-                <Draggable draggableId="first" index={0}>
-                  {(magic) => (
-                    <li ref={magic.innerRef} {...magic.draggableProps}>
-                      <span {...magic.dragHandleProps}>💙</span>One
-                    </li>
-                  )}
-                </Draggable>
-                <Draggable draggableId="second" index={1}>
-                  {(magic) => (
-                    <li ref={magic.innerRef} {...magic.draggableProps}>
-                      <span {...magic.dragHandleProps}>💙</span>Two
-                    </li>
-                  )}
-                </Draggable>
-              </ul>
-            )}
-          </Droppable>
-        </div>
+        <Wrapper>
+          <Boards>
+            <Droppable droppableId="one">
+              {(magic) => (
+                <Board ref={magic.innerRef} {...magic.droppableProps}>
+                  <Draggable draggableId="first" index={0}>
+                    {(magic) => (
+                      <Card
+                        ref={magic.innerRef}
+                        {...magic.dragHandleProps}
+                        {...magic.draggableProps}
+                      ></Card>
+                    )}
+                  </Draggable>
+                  <Draggable draggableId="second" index={1}>
+                    {(magic) => (
+                      <li ref={magic.innerRef} {...magic.draggableProps}>
+                        <span {...magic.dragHandleProps}>💙</span>Two
+                      </li>
+                    )}
+                  </Draggable>
+                </Board>
+              )}
+            </Droppable>
+          </Boards>
+        </Wrapper>
       </DragDropContext>
     </ThemeProvider>
   )
