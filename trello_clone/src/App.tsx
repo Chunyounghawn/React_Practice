@@ -2,7 +2,12 @@ import styled, { createGlobalStyle, ThemeProvider } from "styled-components"
 import { useSelector } from "react-redux"
 import { RootState } from "./modules"
 
-import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd"
+import {
+  DragDropContext,
+  Droppable,
+  Draggable,
+  DropResult,
+} from "react-beautiful-dnd"
 import { darkTheme } from "./theme"
 
 const Wrapper = styled.div`
@@ -33,8 +38,6 @@ const Card = styled.div`
   padding: 10px 10px;
   background-color: ${(props) => props.theme.cardColor};
 `
-
-const toDos = ["a", "b", "c", "d", "e", "f"]
 
 const GlobalStyle = createGlobalStyle`
 //https://fonts.google.com
@@ -105,13 +108,21 @@ a{ //a가 html에 <a herf 랑 같은거임
 }
 `
 
+const toDos = ["a", "b", "c", "d", "e", "f"]
+
 function App() {
-  const onDragEnd = () => {}
+  const onDragEnd = ({ draggableId, destination, source }: DropResult) => {
+    console.log(draggableId)
+    console.log(destination)
+
+    console.log(source)
+  }
+
+  const toDosInfo = useSelector((state: RootState) => state.toDos.toDos)
+  console.log(toDosInfo)
 
   return (
     <ThemeProvider theme={darkTheme}>
-      <GlobalStyle />
-
       <DragDropContext onDragEnd={onDragEnd}>
         <Wrapper>
           <Boards>
@@ -119,7 +130,7 @@ function App() {
               {(magic) => (
                 <Board ref={magic.innerRef} {...magic.droppableProps}>
                   {toDos.map((toDo, index) => (
-                    <Draggable draggableId={toDo} index={index}>
+                    <Draggable key={toDo} draggableId={toDo} index={index}>
                       {(magic) => (
                         <Card
                           ref={magic.innerRef}
