@@ -16,16 +16,25 @@ const Wrapper = styled.div`
 `
 const Boards = styled.div`
   display: grid;
+  width: 100%;
   grid-template-columns: repeat(3, 1fr);
 `
 
 const Board = styled.div`
+  padding: 20px 10px;
+  padding-top: 30px;
   background-color: ${(props) => props.theme.boardColor};
+  border-radius: 10px;
 `
 
 const Card = styled.div`
+  border-radius: 10px;
+  margin-bottom: 5px;
+  padding: 10px 10px;
   background-color: ${(props) => props.theme.cardColor};
 `
+
+const toDos = ["a", "b", "c", "d", "e", "f"]
 
 const GlobalStyle = createGlobalStyle`
 //https://fonts.google.com
@@ -88,7 +97,6 @@ body{
   background-color: ${(props) => props.theme.bgColor};
   color: black;
   line-height: 1.2;
-  font-size:50px;
   letter-spacing:5px;
 }
 a{ //a가 html에 <a herf 랑 같은거임
@@ -110,22 +118,20 @@ function App() {
             <Droppable droppableId="one">
               {(magic) => (
                 <Board ref={magic.innerRef} {...magic.droppableProps}>
-                  <Draggable draggableId="first" index={0}>
-                    {(magic) => (
-                      <Card
-                        ref={magic.innerRef}
-                        {...magic.dragHandleProps}
-                        {...magic.draggableProps}
-                      ></Card>
-                    )}
-                  </Draggable>
-                  <Draggable draggableId="second" index={1}>
-                    {(magic) => (
-                      <li ref={magic.innerRef} {...magic.draggableProps}>
-                        <span {...magic.dragHandleProps}>💙</span>Two
-                      </li>
-                    )}
-                  </Draggable>
+                  {toDos.map((toDo, index) => (
+                    <Draggable draggableId={toDo} index={index}>
+                      {(magic) => (
+                        <Card
+                          ref={magic.innerRef}
+                          {...magic.dragHandleProps}
+                          {...magic.draggableProps}
+                        >
+                          {toDo}
+                        </Card>
+                      )}
+                    </Draggable>
+                  ))}
+                  {magic.placeholder}
                 </Board>
               )}
             </Droppable>
