@@ -1,5 +1,5 @@
 import styled, { createGlobalStyle, ThemeProvider } from "styled-components"
-import { useSelector } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
 import { RootState } from "./modules"
 
 import {
@@ -9,6 +9,8 @@ import {
   DropResult,
 } from "react-beautiful-dnd"
 import { darkTheme } from "./theme"
+import { change_dnd } from "./modules/toDos"
+import { useReducer } from "react"
 
 const Wrapper = styled.div`
   display: flex;
@@ -108,18 +110,18 @@ a{ //a가 html에 <a herf 랑 같은거임
 }
 `
 
-const toDos = ["a", "b", "c", "d", "e", "f"]
-
 function App() {
+  const dispatch = useDispatch()
+
+  const toDos = useSelector((state: RootState) => state.toDos.toDos)
+  //console.log(toDosInfo)
+
   const onDragEnd = ({ draggableId, destination, source }: DropResult) => {
-    console.log(draggableId)
-    console.log(destination)
-
-    console.log(source)
+    if (!destination) return
+    //destination.index의 값이 undefined가 될수있으므로
+    //타입스크립트가 뭐라하기전에 undefined면 리턴해버리기
+    dispatch(change_dnd(destination.index, draggableId, source.index))
   }
-
-  const toDosInfo = useSelector((state: RootState) => state.toDos.toDos)
-  console.log(toDosInfo)
 
   return (
     <ThemeProvider theme={darkTheme}>
