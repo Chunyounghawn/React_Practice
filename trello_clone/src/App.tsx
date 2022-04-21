@@ -1,6 +1,7 @@
 import styled, { createGlobalStyle, ThemeProvider } from "styled-components"
 import { useDispatch, useSelector } from "react-redux"
 import { RootState } from "./modules"
+import DragabbleCard from "./components/modules/DragabbleCard"
 
 import {
   DragDropContext,
@@ -132,17 +133,7 @@ function App() {
               {(magic) => (
                 <Board ref={magic.innerRef} {...magic.droppableProps}>
                   {toDos.map((toDo, index) => (
-                    <Draggable key={toDo} draggableId={toDo} index={index}>
-                      {(magic) => (
-                        <Card
-                          ref={magic.innerRef}
-                          {...magic.dragHandleProps}
-                          {...magic.draggableProps}
-                        >
-                          {toDo}
-                        </Card>
-                      )}
-                    </Draggable>
+                    <DragabbleCard key={toDo} toDo={toDo} index={index} />
                   ))}
                   {magic.placeholder}
                 </Board>
