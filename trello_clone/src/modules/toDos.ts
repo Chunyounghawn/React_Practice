@@ -1,7 +1,7 @@
 const CHANGE_DND = "CHANGE_DND" as const
 
 export const change_dnd = (
-  destination: number,
+  destination: any,
   draggableId: string,
   source: number
 ) => ({
@@ -13,16 +13,16 @@ type change_dnd_action = ReturnType<typeof change_dnd>
 
 type dndState = {
   default: { [key: string]: string[] }
-  destination: number
+  destination: any
   draggableId: string
   source: number
 }
 
 const initialState: dndState = {
   default: {
-    toDos: ["a", "b", "c", "d", "e", "f"],
-    doing: ["a", "b", "c"],
-    done: ["a"],
+    toDos: ["a", "b", "c"],
+    doing: ["d", "e", "f"],
+    done: ["z"],
   },
   destination: 0,
   draggableId: "0",
@@ -35,15 +35,22 @@ function toDos(
 ): dndState {
   switch (action.type) {
     case CHANGE_DND:
-      state.default.toDos.splice(action.default.source, 1)
-      state.default.toDos.splice(
-        action.default.destination,
+      state.default.doing.splice(action.default.source, 1)
+      state.default.doing.splice(
+        action.default.destination.index,
         0,
         action.default.draggableId
       )
+      console.log("aa")
+
+      console.log(action.default.destination.droppableId)
+
       return state
 
     default:
+      console.log("ss")
+
+      console.log(state.default)
       return state
   }
 }

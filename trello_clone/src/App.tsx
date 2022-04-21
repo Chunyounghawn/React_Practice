@@ -24,17 +24,11 @@ const Wrapper = styled.div`
   height: 100vh;
 `
 const Boards = styled.div`
-  display: grid;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
   width: 100%;
   gap: 10px;
-  grid-template-columns: repeat(3, 1fr);
-`
-
-const Card = styled.div`
-  border-radius: 10px;
-  margin-bottom: 5px;
-  padding: 10px 10px;
-  background-color: ${(props) => props.theme.cardColor};
 `
 
 const GlobalStyle = createGlobalStyle`
@@ -112,11 +106,21 @@ function App() {
   const toDos = useSelector((state: RootState) => state.toDos.default)
   //console.log(toDosInfo)
 
-  const onDragEnd = ({ draggableId, destination, source }: DropResult) => {
-    if (!destination) return
+  const onDragEnd = (info: DropResult) => {
+    //if (!destination) return
     //destination.index의 값이 undefined가 될수있으므로
     //타입스크립트가 뭐라하기전에 undefined면 리턴해버리기
-    dispatch(change_dnd(destination.index, draggableId, source.index))
+
+    //dispatch(change_dnd(destination.index, draggableId, source.index))
+    console.log(info)
+
+    const { destination, draggableId, source } = info
+    if (destination?.droppableId === source.droppableId) {
+      //same board movement.
+      dispatch(change_dnd(destination, draggableId, source.index))
+      console.log("qqq")
+    }
+    console.log("fff")
   }
 
   return (
