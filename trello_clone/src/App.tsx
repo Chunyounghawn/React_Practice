@@ -12,10 +12,11 @@ import {
 import { darkTheme } from "./theme"
 import { change_dnd } from "./modules/toDos"
 import { useReducer } from "react"
+import Board from "./components/modules/Board"
 
 const Wrapper = styled.div`
   display: flex;
-  max-width: 480px;
+  max-width: 680px;
   width: 100%;
   margin: 0 auto;
   justify-content: center;
@@ -25,14 +26,8 @@ const Wrapper = styled.div`
 const Boards = styled.div`
   display: grid;
   width: 100%;
+  gap: 10px;
   grid-template-columns: repeat(3, 1fr);
-`
-
-const Board = styled.div`
-  padding: 20px 10px;
-  padding-top: 30px;
-  background-color: ${(props) => props.theme.boardColor};
-  border-radius: 10px;
 `
 
 const Card = styled.div`
@@ -114,7 +109,7 @@ a{ //a가 html에 <a herf 랑 같은거임
 function App() {
   const dispatch = useDispatch()
 
-  const toDos = useSelector((state: RootState) => state.toDos.toDos)
+  const toDos = useSelector((state: RootState) => state.toDos.default)
   //console.log(toDosInfo)
 
   const onDragEnd = ({ draggableId, destination, source }: DropResult) => {
@@ -129,16 +124,9 @@ function App() {
       <DragDropContext onDragEnd={onDragEnd}>
         <Wrapper>
           <Boards>
-            <Droppable droppableId="one">
-              {(magic) => (
-                <Board ref={magic.innerRef} {...magic.droppableProps}>
-                  {toDos.map((toDo, index) => (
-                    <DragabbleCard key={toDo} toDo={toDo} index={index} />
-                  ))}
-                  {magic.placeholder}
-                </Board>
-              )}
-            </Droppable>
+            {Object.keys(toDos).map((boardId) => (
+              <Board key={boardId} boardId={boardId} toDos={toDos[boardId]} />
+            ))}
           </Boards>
         </Wrapper>
       </DragDropContext>
