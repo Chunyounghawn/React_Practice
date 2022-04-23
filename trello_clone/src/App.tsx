@@ -115,12 +115,22 @@ function App() {
     console.log(info)
 
     const { destination, draggableId, source } = info
-    if (destination?.droppableId === source.droppableId) {
-      //same board movement.
-      dispatch(change_dnd(destination, draggableId, source.index))
-      console.log("qqq")
-    }
-    console.log("fff")
+    if (!destination) return
+
+    //same board movement.
+    dispatch(
+      change_dnd(
+        destination.droppableId,
+        destination.index,
+        draggableId,
+        source.droppableId,
+        source.index
+      )
+    )
+    console.log("qqq")
+    console.log(destination)
+
+    //console.log("fff")
   }
 
   return (
