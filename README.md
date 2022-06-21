@@ -1,8 +1,9 @@
-웹페이지를 만들며 배운 자세한 것들은 모두 블로그를 통해 정리하였으며, '익힌것'에는 주요 포인트 세가지만 적어놓았음.  
+웹페이지를 만들며 배운 자세한 것들은 모두 블로그를 통해 정리하였으며, </br>
+'익힌것'에는 주요 포인트 세가지만 적어놓았음.  
 
 ## Coin_Tracker
 ![image](https://user-images.githubusercontent.com/83907810/160234372-28e08fdf-a998-467f-abd8-0fcaa876e046.png)  
-[api]("https://api.coinpaprika.com/v1/tickers")  
+[api](https://api.coinpaprika.com/v1/tickers)  
 open Api 를 사용한 웹 사이트. 가벼운 기능들로만 구현했으며 기초 다지기용 코인 가격사이트.  
 
 ### 익힌것
