@@ -12,14 +12,21 @@ boolean을 이용한 로딩페이지
 api를 활용한 데이터처리방법  
 
 ## Movie_Chart
-![image](https://user-images.githubusercontent.com/83907810/160234641-bc2957d1-d691-4834-8c9b-83a99f783d07.png)  
-[api](https://yts.mx/api/v2/list_movies.json?minimum_rating=9&sort_by=year)  
+![ezgif com-gif-maker](https://user-images.githubusercontent.com/83907810/179976676-5f12e6de-f18f-4d76-998d-08aa5a53edda.gif) 
 Route 기능과 css를 추가해 만든 영화 랭킹 사이트.
 
 ### 익힌것
 간단한 css 기초  
-dom v6에서의 Route 사용법  
+
+dom v6에서의 Route 사용법
+- 기존에 Switch로 Route 컴포넌트들을 감싸줬다면, Routes로 Route 컴포넌트 들을 감싸줌.
+- 중첩 라우트 가능
+- useHistory훅 -> useNavigate훅으로 변경 (사용법은 거의 비슷함)
+
 async, await를 사용한 비동기 함수  
+- async가 붙은 함수는 프라미스를 반환하고, 프라미스가 아닌 것은 프라미스로 감싸 반환한다.
+- await 키워드를 만나면 프라미스가 처리(settled)될 때까지 기다린다.
+=> 가독성 up, 콜백문제 해결
 
 ## Coin_Info(준비중)
 
