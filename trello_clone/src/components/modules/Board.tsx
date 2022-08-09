@@ -1,3 +1,4 @@
+import { useRef } from "react"
 import { Droppable } from "react-beautiful-dnd"
 import styled from "styled-components"
 import DragabbleCard from "./DragabbleCard"
@@ -42,9 +43,19 @@ interface Iboardprops {
 }
 
 function Board({ toDos, boardId }: Iboardprops) {
+  const inputRef = useRef<HTMLInputElement>(null)
+  const onClick = () => {
+    inputRef.current?.focus()
+    setTimeout(() => {
+      inputRef.current?.blur()
+    }, 5000) //위에서 input에 focus(입력가능상태)했다가 5초뒤에 blur(입력불가상태)로 바뀌게
+  }
+
   return (
     <Wrapper>
       <Title>{boardId}</Title>
+      <input ref={inputRef} placeholder="grab me" />
+      <button onClick={onClick}>click me</button>
       <Droppable droppableId={boardId}>
         {(magic, info) => (
           <Area
